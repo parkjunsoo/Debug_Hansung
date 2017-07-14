@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NipperExample : MonoBehaviour {
 
-    public GameObject playerCharacter;
+    GameObject playerCharacter;
 
     public void Call()
     {

@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour {
     float verticalRotation = 0f;
     float verticalVelocity = 0f;
 
-    
+
     int layerMask;
     LineRenderer line;
     Ray ray = new Ray();
@@ -40,13 +40,14 @@ public class PlayerControl : MonoBehaviour {
         cc = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         LED_Light = Camera.main.GetComponent<Light>();
+        LED_Light.enabled = false;
 
         layerMask = LayerMask.GetMask("PickupItem");
         line = GetComponent<LineRenderer>();
 	}
 	
 	// Update is called once per frame
-	void Update () { 
+	void Update () {
         Move();
         Rotate();
         LED_OnOff();
@@ -56,7 +57,7 @@ public class PlayerControl : MonoBehaviour {
     void LED_OnOff()        //E키 입력시 손전등을 on/off하는 함수 - 밝기(intensity) 조절을 통해 켜고 끄는 듯한 효과를 줌.
     {
         if (Input.GetKeyDown(KeyCode.E))
-        {  
+        {
             if (LED_Light.intensity == 0.8f)
                 LED_Light.intensity = 0f;
             else
@@ -94,7 +95,7 @@ public class PlayerControl : MonoBehaviour {
         ray.origin = lineStart.position;
         ray.direction = lineStart.forward;
 
-        if(Physics.Raycast(ray, out hit, 10f, layerMask))
+        if(Physics.Raycast(ray, out hit, 5f, layerMask))                //획득할 아이템의 Layer를 "PickupItem"으로 바꿔야 작동함!!!!!!!!!!!!!!!!!!!ㄴ
         {
             line.SetPosition(1, hit.point);
             if (hit.collider != null)
@@ -102,14 +103,32 @@ public class PlayerControl : MonoBehaviour {
                 if (hit.collider.name.Contains("니퍼"))               //Ray에 충돌한 collider가 "니퍼"를 포함한 이름을 가질 경우
                 {
                     var ex = hit.collider.GetComponent<NipperExample>();        //충돌한 collider의 NipperExample 스크립트를 가져옴
+                    if (Input.GetKeyDown(KeyCode.F))
+                        ex.Call();                    
+                }
+                else if (hit.collider.name.Contains("LED"))          //LED일 경우
+                {
+                    var ex = hit.collider.GetComponent<LEDExample>();
+                    if (Input.GetKeyDown(KeyCode.F))
                     {
-                        if (Input.GetKeyDown(KeyCode.F))
-                            ex.Call();
+                        ex.Call();
+                        LED_Light.intensity = 0f;
+                        LED_Light.enabled = true;                   //LED 오브젝트를 삭제하고 플레이어의 손전등 Light를 활성화
+                    }
+                }
+                else if (hit.collider.name.Contains("Lock"))        //Lock일 경우... 니퍼를 획득한 상태인 경우 Mesh를 바꿈
+                {
+                    var ex = hit.collider.GetComponent<MeshFilter>();
+                    var af = GameObject.Find("Cylinder");           //바꿔줄 mesh를 가진 오브젝트를 저장...
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        if (items.getNipper)
+                        {
+                            ex.mesh = af.GetComponent<MeshFilter>().mesh;       //mesh 변경
+                        }
                     }
                 }
             }
         }
-        
     }
-    
 }
