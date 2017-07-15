@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Objects\FireplugAnim.cs" />
     <Compile Include="Assets\Scripts\Objects\LEDExample.cs" />
     <Compile Include="Assets\Scripts\Objects\NipperExample.cs" />
     <Compile Include="Assets\Scripts\Objects\ThrowObject.cs" />
