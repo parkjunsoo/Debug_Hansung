@@ -34,6 +34,8 @@ public class PlayerControl : MonoBehaviour {
 
     Light LED_Light;
 
+    NumberPad numPad;           //번호패드 스크립트를 저장하기 위함
+
     // Use this for initialization
     void Awake () {
         items = GetComponent<PlayerItems>();            //player에 붙어있는, 아이템 획득 여부를 판단하는 변수들을 가진 PlayerItems 스크립트를 불러와 저장.
@@ -44,6 +46,8 @@ public class PlayerControl : MonoBehaviour {
 
         layerMask = LayerMask.GetMask("PickupItem");
         line = GetComponent<LineRenderer>();
+
+        numPad = GameObject.Find("NumberPad").GetComponent<NumberPad>();
 	}
 
     // Update is called once per frame
@@ -95,19 +99,19 @@ public class PlayerControl : MonoBehaviour {
         ray.origin = lineStart.position;
         ray.direction = lineStart.forward;
 
-        if(Physics.Raycast(ray, out hit, 5f, layerMask))                //획득할 아이템의 Layer를 "PickupItem"으로 바꿔야 작동함!!!!!!!!!!!!!!!!!!!ㄴ
+        if(Physics.Raycast(ray, out hit, 5f, layerMask))                //획득할 아이템의 Layer를 "PickupItem"으로 바꿔야 작동함!!!!!!!!!!!!!!!!!!!
         {
             line.SetPosition(1, hit.point);
             if (hit.collider != null)
             {
-                if (hit.collider.name.Contains("num"))
+                if (hit.collider.name.Contains("Num"))
                 {
-                    var ex = hit.collider.GetComponent<Numbering>();
+                    var ex = hit.collider.GetComponent<NumButton>();
                     if (Input.GetKeyDown(KeyCode.F))
-                        ex.Call();
+                        numPad.Password(ex.input);
                 }
 
-                if (hit.collider.name.Contains("니퍼"))               //Ray에 충돌한 collider가 "니퍼"를 포함한 이름을 가질 경우
+                if (hit.collider.name.Contains("Nipper"))               //Ray에 충돌한 collider가 "니퍼"를 포함한 이름을 가질 경우
                 {
                     var ex = hit.collider.GetComponent<NipperExample>();        //충돌한 collider의 NipperExample 스크립트를 가져옴
                     if (Input.GetKeyDown(KeyCode.F))
