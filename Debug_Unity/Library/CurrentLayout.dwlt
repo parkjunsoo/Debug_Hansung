@@ -107,10 +107,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 817, y: 495}
-  m_MaxSize: {x: 22012, y: 14045}
+  m_MinSize: {x: 811, y: 495}
+  m_MaxSize: {x: 22006, y: 14045}
   vertical: 0
-  controlID: 9204
+  controlID: 10369
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -131,10 +131,10 @@ MonoBehaviour:
     y: 0
     width: 1263
     height: 947
-  m_MinSize: {x: 306, y: 442}
-  m_MaxSize: {x: 8006, y: 8042}
+  m_MinSize: {x: 302, y: 421}
+  m_MaxSize: {x: 8002, y: 8021}
   vertical: 1
-  controlID: 9180
+  controlID: 10370
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -181,10 +181,10 @@ MonoBehaviour:
     y: 634
     width: 1263
     height: 313
-  m_MinSize: {x: 306, y: 221}
-  m_MaxSize: {x: 8006, y: 4021}
+  m_MinSize: {x: 302, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 9132
+  controlID: 10401
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 495}
   m_MaxSize: {x: 10004, y: 14045}
   vertical: 1
-  controlID: 9205
+  controlID: 10202
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -440,14 +440,14 @@ MonoBehaviour:
     width: 1261
     height: 613
   m_SceneLighting: 1
-  lastFramingTime: 4860.884414646687
+  lastFramingTime: 4316.124280455184
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 8.962122, y: 6.4776173, z: -4.5915737}
+    m_Target: {x: 1.7014623, y: 3.114439, z: 2.0636723}
     speed: 2
-    m_Value: {x: 8.962122, y: 6.4776173, z: -4.5915737}
+    m_Value: {x: 1.7014623, y: 3.114439, z: 2.0636723}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -470,13 +470,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.105446994, y: 0.55733013, z: -0.07163007, w: -0.82044697}
+    m_Target: {x: -0.002592162, y: -0.97629976, z: 0.21608995, w: -0.011709985}
     speed: 2
-    m_Value: {x: -0.105446994, y: 0.55733013, z: -0.071630076, w: -0.82044697}
+    m_Value: {x: -0.002592162, y: -0.97629976, z: 0.21608995, w: -0.011709985}
   m_Size:
-    m_Target: 0.88693416
+    m_Target: 2.8578837
     speed: 2
-    m_Value: 0.88693416
+    m_Value: 2.8578837
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -590,9 +590,9 @@ MonoBehaviour:
     height: 465
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 4862feff4867feffa8a3feff08acfeff60affeffe6fbffff000000001426000032310000
+    m_SelectedIDs: 7e260000
+    m_LastClickedID: 9854
+    m_ExpandedIDs: 2460feff54fbffff78fbffffe6fbffff0000000032260000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -652,19 +652,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Temp
+    - Assets/Assets
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Temp
+  - Assets/Assets
   m_LastFoldersGridSize: 16
   m_LastProjectPath: "D:\\\uBB38\uC11C\\Unity Projects\\Tutorial\\DebugProject_Ex\\Hansung\\Debug_Unity"
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 34250000
-    m_LastClickedID: 9524
-    m_ExpandedIDs: 00000000be2400000c2500002c250000362500004e25000000ca9a3bffffff7f
+    m_SelectedIDs: 2a250000
+    m_LastClickedID: 9514
+    m_ExpandedIDs: 00000000c224000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -692,7 +692,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000be2400000c2500002c250000362500004e25000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000c2240000162500002a2500003a250000462500005e25000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -719,7 +719,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 1025000072260000e0240000e6240000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

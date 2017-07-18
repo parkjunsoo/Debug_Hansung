@@ -127,10 +127,10 @@ public class PlayerControl : MonoBehaviour {
                         LED_Light.enabled = true;                   //LED 오브젝트를 삭제하고 플레이어의 손전등 Light를 활성화
                     }
                 }
-                else if (hit.collider.name.Contains("Lock"))        //Lock일 경우... 니퍼를 획득한 상태인 경우 Mesh를 바꿈
+                else if (hit.collider.name.Contains("Lock_Close"))        //Lock일 경우... 니퍼를 획득한 상태인 경우 Mesh를 바꿈
                 {
                     var ex = hit.collider.GetComponent<MeshFilter>();
-                    var af = GameObject.Find("Cylinder");           //바꿔줄 mesh를 가진 오브젝트를 저장...
+                    var af = GameObject.Find("Lock_Open");           //바꿔줄 mesh를 가진 오브젝트를 저장...
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         if (items.getNipper)
