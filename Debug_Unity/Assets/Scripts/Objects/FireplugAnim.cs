@@ -5,12 +5,25 @@ using UnityEngine;
 public class FireplugAnim : MonoBehaviour {
 
     Animator anim;
+    bool thunder;
     bool animPlayed;
+    GameObject gameManager;
 
 	// Use this for initialization
 	void Awake() {
+        gameManager = GameObject.Find("GameManager");
         anim = GetComponent<Animator>();
         animPlayed = false;
+        thunder = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!thunder)
+        {
+            gameManager.GetComponentInChildren<Thunder>().Call();
+            thunder = true;
+        }
     }
 
     private void OnTriggerStay(Collider other)      //component 중에 isTrigger 체크된 Collider가 Trigger역할을 함
