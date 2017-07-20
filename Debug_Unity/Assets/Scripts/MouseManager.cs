@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseManager : MonoBehaviour {
-    
 
     public GameObject selectedObject;
-
-
+    LayerMask itemLayer;
+    public Material mat;
+    public Material oriMat;
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+        itemLayer = LayerMask.GetMask("PickupItem");
 	}
 	
 	// Update is called once per frame
@@ -18,9 +18,9 @@ public class MouseManager : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         //RaycastHit[] hits = Physics.RaycastAll(ray);
-        if(Physics.Raycast(ray, out hitInfo))
+        if(Physics.Raycast(ray, out hitInfo,10f,itemLayer))
         {
-            Debug.Log("Mouse is over:" + hitInfo.collider.name);
+//            Debug.Log("Mouse is over:" + hitInfo.collider.name);
             GameObject hitObject = hitInfo.transform.root.gameObject;
             
             HoverObject(hitObject);
@@ -40,10 +40,12 @@ public class MouseManager : MonoBehaviour {
         }
         selectedObject = obj;
         Renderer[] rs = selectedObject.GetComponentsInChildren<Renderer>();
+
         foreach(Renderer r in rs)
         {
+            oriMat = r.material;
             Material m = r.material;
-            m.color = Color.green;
+            m = mat;
             r.material = m; 
         }
     } 
@@ -55,7 +57,7 @@ public class MouseManager : MonoBehaviour {
         foreach (Renderer r in rs)
         {
             Material m = r.material;
-            m.color = Color.white;
+            m = oriMat;
             r.material = m;
         }
         selectedObject = null;
