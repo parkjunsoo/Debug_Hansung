@@ -6,7 +6,8 @@ public class MouseManager : MonoBehaviour {
 
     public GameObject selectedObject;
     LayerMask itemLayer;
-
+    public Material mat;
+    public Material oriMat;
 	// Use this for initialization
 	void Awake () {
         itemLayer = LayerMask.GetMask("PickupItem");
@@ -39,10 +40,12 @@ public class MouseManager : MonoBehaviour {
         }
         selectedObject = obj;
         Renderer[] rs = selectedObject.GetComponentsInChildren<Renderer>();
+
         foreach(Renderer r in rs)
         {
+            oriMat = r.material;
             Material m = r.material;
-            m.color = Color.red;
+            m = mat;
             r.material = m; 
         }
     } 
@@ -54,7 +57,7 @@ public class MouseManager : MonoBehaviour {
         foreach (Renderer r in rs)
         {
             Material m = r.material;
-            m.color = Color.white;
+            m = oriMat;
             r.material = m;
         }
         selectedObject = null;
