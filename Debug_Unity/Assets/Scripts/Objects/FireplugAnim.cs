@@ -21,7 +21,9 @@ public class FireplugAnim : MonoBehaviour {
     {
         if (!thunder)
         {
-            gameManager.GetComponentInChildren<Thunder>().Call();
+            GameObject.Find("Thunderlight").GetComponent<Light>().GetComponent<Thunder>().Call();
+//            ex.GetComponent<Thunder>().Call();
+//            gameManager.GetComponentInChildren<Thunder>().Call();
             thunder = true;
         }
     }
