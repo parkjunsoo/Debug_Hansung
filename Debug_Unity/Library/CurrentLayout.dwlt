@@ -110,7 +110,7 @@ MonoBehaviour:
   m_MinSize: {x: 817, y: 492}
   m_MaxSize: {x: 22012, y: 14042}
   vertical: 0
-  controlID: 2640
+  controlID: 465
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_MinSize: {x: 306, y: 442}
   m_MaxSize: {x: 8006, y: 8042}
   vertical: 1
-  controlID: 2684
+  controlID: 491
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_MinSize: {x: 306, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 2685
+  controlID: 492
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 492}
   m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
-  controlID: 2641
+  controlID: 466
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -537,8 +537,8 @@ MonoBehaviour:
     height: 447
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7afbffff
-    m_LastClickedID: -1158
+    m_SelectedIDs: 7cfbffff
+    m_LastClickedID: -1156
     m_ExpandedIDs: 1afcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -600,18 +600,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets
+  - Assets/Scripts
   m_LastFoldersGridSize: 16
   m_LastProjectPath: "D:\\\uBB38\uC11C\\Unity Projects\\Tutorial\\DebugProject_Ex\\Hansung\\Debug_Unity"
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 2a260000
-    m_LastClickedID: 9770
+    m_SelectedIDs: 90260000
+    m_LastClickedID: 9872
     m_ExpandedIDs: 000000002a260000802600009026000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
