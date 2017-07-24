@@ -93,6 +93,7 @@ public class PlayerControl : MonoBehaviour {
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
     
+
     void Pickup()               //Inspector의 Alignment를 "View"로 설정하여 선(?)을 확인할 수 있고, "Local"로 설정하여 선(?)을 지울 수 있음
     {
         line.SetPosition(0, lineStart.position);                      //lineStart의 position(Inspector에서 연결해줘야 함)
@@ -111,13 +112,14 @@ public class PlayerControl : MonoBehaviour {
                     if (Input.GetKeyDown(KeyCode.F))
                         numPad.Password(ex.input);
                 }
-
+                
                 if (hit.collider.name.Contains("Nipper"))               //Ray에 충돌한 collider가 "니퍼"를 포함한 이름을 가질 경우
                 {
                     var ex = hit.collider.GetComponent<NipperExample>();        //충돌한 collider의 NipperExample 스크립트를 가져옴
                     if (Input.GetKeyDown(KeyCode.F))
                         ex.Call();                    
                 }
+                
                 else if (hit.collider.name.Contains("LED"))          //LED일 경우
                 {
                     var ex = hit.collider.GetComponent<LEDExample>();

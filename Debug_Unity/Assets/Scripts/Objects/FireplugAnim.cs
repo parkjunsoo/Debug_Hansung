@@ -32,7 +32,7 @@ public class FireplugAnim : MonoBehaviour {
     {                                               //Trigger 안에 다른 Collider가 들어와 있을 때 매 프레임마다 호출되는 함수
         if(other.tag == "Player")                   //Trigger 안에 들어와 있는 오브젝트의 태그가 "Player"이면
         {
-            if (animPlayed == false && Input.GetKeyDown(KeyCode.F))     //애니메이션을 한 번만 플레이하기 위해 animPlayed == false && F키를 눌렀을 때
+            if (animPlayed == false && Input.GetKeyDown(KeyCode.R))     //애니메이션을 한 번만 플레이하기 위해 animPlayed == false && F키를 눌렀을 때
             {
                 anim.SetTrigger("Open");                //Animator에서 작용
                 animPlayed = true;                      //애니메이션을 한 번만 플레이해야 하므로 animPlayed를 true로 설정.
