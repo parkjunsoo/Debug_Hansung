@@ -1102,7 +1102,7 @@ Prefab:
     - target: {fileID: 108106043577493552, guid: d339fa89172dee0439dedae468e733cd,
         type: 2}
       propertyPath: m_Type
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4243222805442730, guid: d339fa89172dee0439dedae468e733cd, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1799,7 +1799,7 @@ Prefab:
     - target: {fileID: 198448232694222444, guid: 0c57581a03aada7419423ce824d711fa,
         type: 2}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.01
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 198448232694222444, guid: 0c57581a03aada7419423ce824d711fa,
         type: 2}
@@ -1809,7 +1809,7 @@ Prefab:
     - target: {fileID: 198448232694222444, guid: 0c57581a03aada7419423ce824d711fa,
         type: 2}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.05
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 198448232694222444, guid: 0c57581a03aada7419423ce824d711fa,
         type: 2}
@@ -1819,7 +1819,7 @@ Prefab:
     - target: {fileID: 198448232694222444, guid: 0c57581a03aada7419423ce824d711fa,
         type: 2}
       propertyPath: InitialModule.startSizeZ.minScalar
-      value: 0.05
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 198448232694222444, guid: 0c57581a03aada7419423ce824d711fa,
         type: 2}
@@ -3693,6 +3693,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 50, y: 0.5, z: 50}
   m_Center: {x: 0, y: -0.27747118, z: 0}
+--- !u!1 &1706869164 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100012, guid: 5dd74e81aad376b4fb0aa7b9ade51eea, type: 3}
+  m_PrefabInternal: {fileID: 479825398}
+--- !u!136 &1706869167
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706869164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.8
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.8, z: 0.6}
 --- !u!1 &1722503762
 GameObject:
   m_ObjectHideFlags: 0
