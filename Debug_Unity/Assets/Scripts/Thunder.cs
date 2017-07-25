@@ -44,7 +44,7 @@ public class Thunder : MonoBehaviour {
 
     IEnumerator ThunderLight_Intermittent()     //뻔쩎뻔쩎뻔쩎!!!
     {
-        for(int i = 0; i < Random.Range(4,8); i++)
+        for(int i = 0; i < Random.Range(6,8); i++)
         {
             if (thunderLight.intensity == 0f)
                 thunderLight.intensity = 1.2f;
