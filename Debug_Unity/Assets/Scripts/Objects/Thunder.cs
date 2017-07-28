@@ -55,9 +55,19 @@ public class Thunder : MonoBehaviour {
         thunderLight.intensity = 0f;
     }
 
-    public void Call()
+    public void CallIntermittent()
     {
         StartCoroutine(ThunderLight_Intermittent());
+    }
+
+    public void CallFast()
+    {
+        StartCoroutine(ThunderLight_fast());
+    }
+
+    public void CallSlow()
+    {
+        StartCoroutine(ThunderLight_slow());
     }
 
     // Update is called once per frame

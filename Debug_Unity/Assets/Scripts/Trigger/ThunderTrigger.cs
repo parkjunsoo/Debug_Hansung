@@ -12,7 +12,7 @@ public class ThunderTrigger : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-        thunderLight.GetComponent<Thunder>().Call();
+        thunderLight.GetComponent<Thunder>().CallIntermittent();
     }
     // Update is called once per frame
     void Update () {
