@@ -47,9 +47,12 @@ public class Thunder : MonoBehaviour {
         for(int i = 0; i < Random.Range(6,8); i++)
         {
             if (thunderLight.intensity == 0f)
-                thunderLight.intensity = 1.2f;
-            else
+            {
+                thunderLight.intensity = 1.5f;
+            }
+            else {
                 thunderLight.intensity = 0f;
+            }
             yield return new WaitForSeconds(0.1f);
         }
         thunderLight.intensity = 0f;
