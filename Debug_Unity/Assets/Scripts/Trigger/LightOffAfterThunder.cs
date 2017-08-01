@@ -27,7 +27,7 @@ public class LightOffAfterThunder : MonoBehaviour {
     {
         if (!isOff)
         {
-            isOff = true;
+//            isOff = true;
             thunderLight.GetComponent<Thunder>().CallFast();
             foreach (Light light in lamp)
             {

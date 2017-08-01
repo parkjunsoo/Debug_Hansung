@@ -48,7 +48,7 @@ public class PlayerControl : MonoBehaviour {
         layerMask = LayerMask.GetMask("PickupItem");
         line = GetComponent<LineRenderer>();
 
-        //numPad = GameObject.Find("NumberPad").GetComponent<NumberPad>();
+        numPad = GameObject.Find("NumberPad").GetComponent<NumberPad>();
 	}
     
     // Update is called once per frame
@@ -101,7 +101,7 @@ public class PlayerControl : MonoBehaviour {
         ray.origin = lineStart.position;
         ray.direction = lineStart.forward;
 
-        if(Physics.Raycast(ray, out hit, 5f, layerMask))                //획득할 아이템의 Layer를 "PickupItem"으로 바꿔야 작동함!!!!!!!!!!!!!!!!!!!
+        if(Physics.Raycast(ray, out hit, 3f, layerMask))                //획득할 아이템의 Layer를 "PickupItem"으로 바꿔야 작동함!!!!!!!!!!!!!!!!!!!
         {
             line.SetPosition(1, hit.point);
             if (hit.collider != null)
@@ -110,16 +110,17 @@ public class PlayerControl : MonoBehaviour {
                 {
                     var ex = hit.collider.GetComponent<NumButton>();
                     if (Input.GetKeyDown(KeyCode.F))
+                    {
                         numPad.Password(ex.input);
+                    }
                 }
-                
-                if (hit.collider.name.Contains("Nipper"))               //Ray에 충돌한 collider가 "니퍼"를 포함한 이름을 가질 경우
+                else if (hit.collider.name.Contains("Nipper"))               //Ray에 충돌한 collider가 "니퍼"를 포함한 이름을 가질 경우
                 {
                     var ex = hit.collider.GetComponent<NipperExample>();        //충돌한 collider의 NipperExample 스크립트를 가져옴
                     if (Input.GetKeyDown(KeyCode.F))
-                        ex.Call();                    
+                        ex.Call();
                 }
-                
+
                 else if (hit.collider.name.Contains("LED"))          //LED일 경우
                 {
                     var ex = hit.collider.GetComponent<LEDExample>();
@@ -143,7 +144,17 @@ public class PlayerControl : MonoBehaviour {
                         }
                     }
                 }
+
+                else if (hit.collider.name.Contains("doorLock"))
+                {
+                    var ex = hit.collider.GetComponentInChildren<NumberPad>();
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        ex.EnableMesh();
+                    }
+                }
             }
+            else return;
         }
     }
 }

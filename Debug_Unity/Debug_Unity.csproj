@@ -85,6 +85,7 @@
     <Compile Include="Assets\OutlineEffect\Outline.cs" />
     <Compile Include="Assets\OutlineEffect\OutlineEffect.cs" />
     <Compile Include="Assets\Scripts\MouseManager.cs" />
+    <Compile Include="Assets\Scripts\Objects\DoorOpen.cs" />
     <Compile Include="Assets\Scripts\Objects\FireplugAnim.cs" />
     <Compile Include="Assets\Scripts\Objects\LEDExample.cs" />
     <Compile Include="Assets\Scripts\Objects\NipperExample.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Assets\Scripts\Trigger\LightOffAfterThunder.cs" />
     <Compile Include="Assets\Scripts\Trigger\ThunderTrigger.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
-    <Compile Include="Assets\Temp\DoorOpen.cs" />
     <Compile Include="Assets\Temp\NumberPad.cs" />
     <Compile Include="Assets\Temp\NumButton.cs" />
   </ItemGroup>
