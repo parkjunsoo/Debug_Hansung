@@ -16,7 +16,7 @@ public class DoorOpen : MonoBehaviour {
 
     void Open()
     {
-        this.transform.Rotate(0f, -0.5f, 0f);
+        this.transform.Rotate(0f, -1.0f, 0f);
     }
 
     // Use this for initialization

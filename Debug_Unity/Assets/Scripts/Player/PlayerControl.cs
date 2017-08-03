@@ -26,6 +26,7 @@ public class PlayerControl : MonoBehaviour {
     static PlayerItems items;                                  //PlayerItems 스크립트를 저장할 변수(?)
     static Light LED_Light;
     public static bool getLED;                              //Scene 이동시 손전등을 획득했는지를 판단해서 Light 컴포넌트를 활성화할지 여부를 결정하기 위함
+    static bool isOn;
     public Transform startTransform;                        //씬 로드시 시작할 위치를 지정하기 위한 변수
     public static int level;
 
@@ -52,7 +53,13 @@ public class PlayerControl : MonoBehaviour {
         else
         {
             LED_Light.enabled = true;
+
+            if (isOn)
+                LED_Light.intensity = 0.8f;
+            else
+                LED_Light.intensity = 0.0f;
         }
+
         if (startTransform)
         {
             gameObject.transform.position = startTransform.position;
@@ -75,9 +82,15 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (LED_Light.intensity == 0.8f)
+            {
                 LED_Light.intensity = 0f;
+                isOn = false;
+            }
             else
+            {
                 LED_Light.intensity = 0.8f;
+                isOn = true;
+            }
         }
     }
 
