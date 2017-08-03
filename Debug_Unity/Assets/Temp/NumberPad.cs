@@ -47,7 +47,10 @@ public class NumberPad : MonoBehaviour {
             if (inputPW.Equals(password))
             {
                 GameObject.Find("frontdoor_right").GetComponent<DoorOpen>().isOpening = true;
+                //Destroy(gameObject);
                 DisableMesh();
+                Destroy(GetComponentInParent<cakeslice.Outline>());
+                Destroy(GetComponentInParent<cakeslice.Toggle>());
                 return;
             }
             else

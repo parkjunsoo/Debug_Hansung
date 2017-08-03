@@ -18,7 +18,7 @@ public class EnemyAppear : MonoBehaviour {
     {
         if (enemy.position.x - appearPoint.position.x >= 0.01f && appear)
             enemy.Translate(new Vector3(0,0.02f,0));
-        if (enemy.position.x - appearPoint.position.x <= 1f && disappear)
+        if (enemy.position.x - appearPoint.position.x <= 2f && disappear)
             enemy.Translate(new Vector3(0, -0.02f, 0));
     }
 }

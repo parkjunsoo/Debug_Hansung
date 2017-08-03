@@ -87,10 +87,12 @@
     <Compile Include="Assets\Scripts\MouseManager.cs" />
     <Compile Include="Assets\Scripts\Objects\DoorOpen.cs" />
     <Compile Include="Assets\Scripts\Objects\FireplugAnim.cs" />
+    <Compile Include="Assets\Scripts\Objects\FirstFloorManager.cs" />
     <Compile Include="Assets\Scripts\Objects\LEDExample.cs" />
     <Compile Include="Assets\Scripts\Objects\NipperExample.cs" />
     <Compile Include="Assets\Scripts\Objects\ThrowObject.cs" />
     <Compile Include="Assets\Scripts\Objects\Thunder.cs" />
+    <Compile Include="Assets\Scripts\Objects\ThunderManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerItems.cs" />
     <Compile Include="Assets\Scripts\Trigger\EnemyAppear.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Temp\NumberPad.cs" />
     <Compile Include="Assets\Temp\NumButton.cs" />
+    <Compile Include="Assets\temporaryScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Grom.shader" />

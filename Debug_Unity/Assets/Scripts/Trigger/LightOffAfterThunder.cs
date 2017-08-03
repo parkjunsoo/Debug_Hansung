@@ -6,20 +6,37 @@ public class LightOffAfterThunder : MonoBehaviour {
 
     GameObject lampGroup;
     Light[] lamp;
-    Light thunderLight;
-    bool isOff;
+    GameObject thunderGroup;
+    Thunder[] thunderLight;
+    public static bool isOff;
+
+    public Light[] offLamp;
 
     // Use this for initialization
     void Awake ()
     {
-        isOff = false;
+        //isOff = false;
         lampGroup = GameObject.Find("lampGroup");
-        lamp = lampGroup.GetComponentsInChildren<Light>();
-        thunderLight = GameObject.Find("Thunderlight").GetComponent<Light>();
+        lamp = lampGroup.GetComponentsInChildren<Light>();  
+        thunderGroup = GameObject.Find("ThunderGroup");
+        thunderLight = thunderGroup.GetComponentsInChildren<Thunder>();
+//        thunderLight = GameObject.Find("ThunderGroup").GetComponentsInChildren<Thunder>();
+        //thunderLight = GameObject.Find("Thunderlight").GetComponent<Light>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        if (isOff)
+        {
+            foreach(Light light in offLamp)
+            {
+                light.enabled = false;
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 
     }
 
@@ -27,9 +44,25 @@ public class LightOffAfterThunder : MonoBehaviour {
     {
         if (!isOff)
         {
+            isOff = true;
 //            isOff = true;
-            thunderLight.GetComponent<Thunder>().CallFast();
+/*
+            foreach(Thunder light in thunderLight)
+            {
+                light.CallFast();
+            }
+            */
+            foreach(Thunder thunder in thunderLight)
+            {
+                thunder.CallFast();
+            }
+//            thunderLight.GetComponent<Thunder>().CallFast();
             foreach (Light light in lamp)
+            {
+                light.enabled = false;
+            }
+
+            foreach(Light light in offLamp)
             {
                 light.enabled = false;
             }

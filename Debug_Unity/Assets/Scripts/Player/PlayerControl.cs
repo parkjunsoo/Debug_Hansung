@@ -7,8 +7,6 @@ public class PlayerControl : MonoBehaviour {
     public float movementSpeed = 5f;
     public float mouseSensitivity = 2f;
     public float upDownRange = 90;
-    public float jumpSpeed = 5;
-    public float downSpeed = 5;
 
     Vector3 speed;
     float forwardSpeed;
@@ -19,45 +17,58 @@ public class PlayerControl : MonoBehaviour {
     float verticalRotation = 0f;
     float verticalVelocity = 0f;
 
-
     int layerMask;
     LineRenderer line;
     Ray ray = new Ray();
     RaycastHit hit;
     float timer = 0f;
 
-    PlayerItems items;                                  //PlayerItems 스크립트를 저장할 변수(?)
-    
-    public Transform lineStart;
-    
+    static PlayerItems items;                                  //PlayerItems 스크립트를 저장할 변수(?)
+    static Light LED_Light;
+    public static bool getLED;                              //Scene 이동시 손전등을 획득했는지를 판단해서 Light 컴포넌트를 활성화할지 여부를 결정하기 위함
+    public Transform startTransform;                        //씬 로드시 시작할 위치를 지정하기 위한 변수
+    public static int level;
+
+    public Transform lineStart;    
     CharacterController cc;
-
-    Light LED_Light;
-
-    public NumberPad numPad;           //번호패드 스크립트를 저장하기 위함
-
-    // Use this for initialization
     
+    public int getLevel()
+    {
+        return level;
+    }
+
     void Awake () {
         items = GetComponent<PlayerItems>();            //player에 붙어있는, 아이템 획득 여부를 판단하는 변수들을 가진 PlayerItems 스크립트를 불러와 저장.
         cc = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         LED_Light = Camera.main.GetComponent<Light>();
-        LED_Light.enabled = false;
-
         layerMask = LayerMask.GetMask("PickupItem");
         line = GetComponent<LineRenderer>();
 
-        numPad = GameObject.Find("NumberPad").GetComponent<NumberPad>();
-	}
+        if (!getLED)
+        {
+            LED_Light.enabled = false;
+        }
+        else
+        {
+            LED_Light.enabled = true;
+        }
+        if (startTransform)
+        {
+            gameObject.transform.position = startTransform.position;
+            gameObject.transform.rotation = startTransform.rotation;
+        }
+
+    }
     
-    // Update is called once per frame
     void Update () {
         Move();
         Rotate();
         LED_OnOff();
         Pickup();
     }
+
+    
 
     void LED_OnOff()        //E키 입력시 손전등을 on/off하는 함수 - 밝기(intensity) 조절을 통해 켜고 끄는 듯한 효과를 줌.
     {
@@ -104,20 +115,23 @@ public class PlayerControl : MonoBehaviour {
         if(Physics.Raycast(ray, out hit, 3f, layerMask))                //획득할 아이템의 Layer를 "PickupItem"으로 바꿔야 작동함!!!!!!!!!!!!!!!!!!!
         {
             line.SetPosition(1, hit.point);
+
             if (hit.collider != null)
             {
+
                 if (hit.collider.name.Contains("Num"))
                 {
                     var ex = hit.collider.GetComponent<NumButton>();
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-                        numPad.Password(ex.input);
+                        hit.collider.GetComponentInParent<NumberPad>().Password(ex.input);
                     }
                 }
+
                 else if (hit.collider.name.Contains("Nipper"))               //Ray에 충돌한 collider가 "니퍼"를 포함한 이름을 가질 경우
                 {
                     var ex = hit.collider.GetComponent<NipperExample>();        //충돌한 collider의 NipperExample 스크립트를 가져옴
-                    if (Input.GetKeyDown(KeyCode.F))
+                    if (Input.GetKeyDown(KeyCode.F) && ex.isOpen)
                         ex.Call();
                 }
 
@@ -127,10 +141,13 @@ public class PlayerControl : MonoBehaviour {
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         ex.Call();
+                        getLED = true;
                         LED_Light.intensity = 0f;
                         LED_Light.enabled = true;                   //LED 오브젝트를 삭제하고 플레이어의 손전등 Light를 활성화
+                        level = 1;
                     }
                 }
+
                 else if (hit.collider.name.Contains("Lock_Close"))        //Lock일 경우... 니퍼를 획득한 상태인 경우 Mesh를 바꿈
                 {
                     var ex = hit.collider.GetComponent<MeshFilter>();
@@ -153,8 +170,9 @@ public class PlayerControl : MonoBehaviour {
                         ex.EnableMesh();
                     }
                 }
+
             }
-            else return;
+
         }
     }
 }
