@@ -25,9 +25,8 @@ public class PlayerControl : MonoBehaviour {
 
     static PlayerItems items;                                  //PlayerItems 스크립트를 저장할 변수(?)
     static Light LED_Light;
-    public static bool getLED;                              //Scene 이동시 손전등을 획득했는지를 판단해서 Light 컴포넌트를 활성화할지 여부를 결정하기 위함
+    static bool getLED;                              //Scene 이동시 손전등을 획득했는지를 판단해서 Light 컴포넌트를 활성화할지 여부를 결정하기 위함
     static bool isOn;
-    public Transform startTransform;                        //씬 로드시 시작할 위치를 지정하기 위한 변수
     public static int level;
 
     public Transform lineStart;    
@@ -36,6 +35,11 @@ public class PlayerControl : MonoBehaviour {
     public int getLevel()
     {
         return level;
+    }
+    
+    public bool GetLED()
+    {
+        return getLED;
     }
 
     void Awake () {
@@ -55,16 +59,11 @@ public class PlayerControl : MonoBehaviour {
             LED_Light.enabled = true;
 
             if (isOn)
-                LED_Light.intensity = 0.8f;
+                LED_Light.intensity = 1f;
             else
                 LED_Light.intensity = 0.0f;
         }
-
-        if (startTransform)
-        {
-            gameObject.transform.position = startTransform.position;
-            gameObject.transform.rotation = startTransform.rotation;
-        }
+        
 
     }
     
@@ -81,14 +80,14 @@ public class PlayerControl : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (LED_Light.intensity == 0.8f)
+            if (LED_Light.intensity == 1f)
             {
                 LED_Light.intensity = 0f;
                 isOn = false;
             }
             else
             {
-                LED_Light.intensity = 0.8f;
+                LED_Light.intensity = 1f;
                 isOn = true;
             }
         }
@@ -144,7 +143,7 @@ public class PlayerControl : MonoBehaviour {
                 else if (hit.collider.name.Contains("Nipper"))               //Ray에 충돌한 collider가 "니퍼"를 포함한 이름을 가질 경우
                 {
                     var ex = hit.collider.GetComponent<NipperExample>();        //충돌한 collider의 NipperExample 스크립트를 가져옴
-                    if (Input.GetKeyDown(KeyCode.F) && ex.isOpen)
+                    if (Input.GetKeyDown(KeyCode.F)/* && ex.isOpen*/ )
                         ex.Call();
                 }
 
@@ -171,6 +170,8 @@ public class PlayerControl : MonoBehaviour {
                         {
                             ex.mesh = af.GetComponent<MeshFilter>().mesh;       //mesh 변경
                             hit.collider.GetComponent<Rigidbody>().useGravity = true;
+                            ex.GetComponent<cakeslice.Outline>().enabled = false;
+                            ex.GetComponent<BoxCollider>().enabled = false;
                         }
                     }
                 }

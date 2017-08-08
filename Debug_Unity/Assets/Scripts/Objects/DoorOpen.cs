@@ -23,12 +23,15 @@ public class DoorOpen : MonoBehaviour {
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-        if (isOpening && this.transform.rotation.y <= 0.703f)
+
+    // Update is called once per frame
+    void FixedUpdate () {
+        //Debug.Log(this.transform.rotation.y);
+        if (isOpening && this.transform.rotation.y <= 0.503f)
             Open();
-        if (this.transform.rotation.y >= 0f)
+        //-5E-17
+        if(this.transform.rotation.y >= -2.5E-17)
+//        if (this.transform.rotation.y >= 0f)
             SceneManager.LoadScene("first");
 	}
 }

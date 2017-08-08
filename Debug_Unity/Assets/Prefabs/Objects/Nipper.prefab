@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 95422447490745466}
   - component: {fileID: 64818786015034360}
   - component: {fileID: 114471210133197396}
+  - component: {fileID: 114735455483559520}
+  - component: {fileID: 114345756465979514}
   m_Layer: 10
   m_Name: Nipper
   m_TagString: Untagged
@@ -38,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983008465645458}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 5.17}
+  m_LocalPosition: {x: -5.3347883, y: 0.142, z: -8.352926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,6 +116,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114345756465979514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1983008465645458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72b3f4c374d0ba47824d73874ac6fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114471210133197396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,3 +138,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e082dc05d19df5e488da187827b5891d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
+--- !u!114 &114735455483559520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1983008465645458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
