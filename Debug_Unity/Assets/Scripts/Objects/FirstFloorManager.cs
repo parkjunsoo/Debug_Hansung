@@ -8,16 +8,19 @@ public class FirstFloorManager : MonoBehaviour {
     public GameObject initPosition;
     public GameObject officeOutPosition;
 
-	// Use this for initialization
-	void Start () {
+    
+    // Use this for initialization
+    void Start () {
         player = GameObject.Find("Player");
 
-        if(player.GetComponentInChildren<Light>().enabled)
+        if(player.GetComponentInChildren<Light>().enabled)                  //손전등이 활성화 상태에서 Start시 Player의 시작 위치를 과사 앞으로
             player.transform.position =
                 officeOutPosition.transform.position;
-        else
+        else                                                                //손전등이 비활성화 상태일 경우 Player의 시작 위치를 Default로
             player.transform.position =
                 initPosition.transform.position;
+        
+
         /*
         if (player.GetComponent<PlayerControl>().GetLED())
             player.transform.position =

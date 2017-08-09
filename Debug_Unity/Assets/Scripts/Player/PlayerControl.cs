@@ -29,8 +29,10 @@ public class PlayerControl : MonoBehaviour {
     static bool isOn;
     public static int level;
 
-    public Transform lineStart;    
+    public Transform lineStart;
     CharacterController cc;
+
+    FadeManager fadeManager;
     
     public int getLevel()
     {
@@ -49,6 +51,9 @@ public class PlayerControl : MonoBehaviour {
         LED_Light = Camera.main.GetComponent<Light>();
         layerMask = LayerMask.GetMask("PickupItem");
         line = GetComponent<LineRenderer>();
+        fadeManager = GameObject.Find("FadeManager").GetComponent<FadeManager>();
+
+        fadeManager.Fade(false, 2.0f);
 
         if (!getLED)
         {

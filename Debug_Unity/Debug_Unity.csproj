@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\Trigger\LightOffAfterThunder.cs" />
     <Compile Include="Assets\Scripts\Trigger\ThunderTrigger.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
+    <Compile Include="Assets\Temp\FadeManager.cs" />
     <Compile Include="Assets\Temp\NumberPad.cs" />
     <Compile Include="Assets\Temp\NumButton.cs" />
     <Compile Include="Assets\temporaryScript.cs" />

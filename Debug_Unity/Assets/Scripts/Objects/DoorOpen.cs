@@ -16,7 +16,7 @@ public class DoorOpen : MonoBehaviour {
 
     void Open()
     {
-        this.transform.Rotate(0f, -1.0f, 0f);
+        this.transform.Rotate(0f, -0.7f, 0f);
     }
 
     // Use this for initialization
@@ -25,13 +25,14 @@ public class DoorOpen : MonoBehaviour {
 	}
 
     // Update is called once per frame
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         //Debug.Log(this.transform.rotation.y);
         if (isOpening && this.transform.rotation.y <= 0.503f)
             Open();
         //-5E-17
-        if(this.transform.rotation.y >= -2.5E-17)
-//        if (this.transform.rotation.y >= 0f)
+        if (this.transform.rotation.y >= -2.5E-17)
+        //        if (this.transform.rotation.y >= 0f)
             SceneManager.LoadScene("first");
-	}
+    }
 }
