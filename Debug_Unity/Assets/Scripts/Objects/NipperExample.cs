@@ -5,6 +5,7 @@ using UnityEngine;
 public class NipperExample : MonoBehaviour {
 
     GameObject playerCharacter;
+    public bool isOpen = false;
 
     public void Call()
     {

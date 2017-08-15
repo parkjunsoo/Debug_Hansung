@@ -47,7 +47,11 @@ public class NumberPad : MonoBehaviour {
             if (inputPW.Equals(password))
             {
                 GameObject.Find("frontdoor_right").GetComponent<DoorOpen>().isOpening = true;
+                GameObject.Find("FadeManager").GetComponent<FadeManager>().Fade(true, 1.25f);               // 비밀번호가 맞으면 Fadeout
+                //Destroy(gameObject);
                 DisableMesh();
+                Destroy(GetComponentInParent<cakeslice.Outline>());
+                Destroy(GetComponentInParent<cakeslice.Toggle>());
                 return;
             }
             else

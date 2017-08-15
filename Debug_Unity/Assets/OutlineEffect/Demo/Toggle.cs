@@ -14,6 +14,7 @@ namespace cakeslice
         
         private void OnTriggerEnter(Collider other)
         {
+            if(other.gameObject.name.Contains("Player"))
                 GetComponent<Outline>().enabled = true;
         }
 

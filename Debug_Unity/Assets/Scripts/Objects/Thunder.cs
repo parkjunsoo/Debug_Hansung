@@ -5,11 +5,13 @@ using UnityEngine;
 public class Thunder : MonoBehaviour {
 
     Light thunderLight;
+    AudioSource thunderSound;
 
 	// Use this for initialization
 	void Awake() {
         thunderLight = GetComponent<Light>();
         thunderLight.intensity = 0f;
+        thunderSound = GetComponent<AudioSource>();
         /*
         if(Random.Range(1,3) == 1)
         {
@@ -17,6 +19,7 @@ public class Thunder : MonoBehaviour {
         }
         else
         */
+        if(GameObject.Find("Player").GetComponent<PlayerControl>().getLevel() != 1)
         StartCoroutine(ThunderLight_slow());
         
 //        StartCoroutine(ThunderLight_Intermittent());
@@ -25,16 +28,18 @@ public class Thunder : MonoBehaviour {
 	
     IEnumerator ThunderLight_fast()             //뻔쩎!
     {
-        thunderLight.intensity = 1.5f;
+        thunderLight.intensity = 0.8f;
         yield return new WaitForSeconds(0.5f);
         thunderLight.intensity = 0f;
     }
 
     IEnumerator ThunderLight_slow()             //버언~~~~쩍!!
     {
-        for(thunderLight.intensity = 0f;thunderLight.intensity < 1.5f;)
+        for(thunderLight.intensity = 0f; thunderLight.intensity < 0.8f;)
         {
-            thunderLight.intensity += Random.Range(-0.04f, 0.07f);
+            thunderLight.intensity += GameObject.Find("GameManager").GetComponent<ThunderManager>().intensity;
+            //thunderLight.intensity += 0.04f;
+            //thunderLight.intensity += Random.Range(-0.04f, 0.07f);
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(0.5f);
@@ -44,11 +49,11 @@ public class Thunder : MonoBehaviour {
 
     IEnumerator ThunderLight_Intermittent()     //뻔쩎뻔쩎뻔쩎!!!
     {
-        for(int i = 0; i < Random.Range(6,8); i++)
+        for (int i = 0; i < Random.Range(6,8); i++)
         {
             if (thunderLight.intensity == 0f)
             {
-                thunderLight.intensity = 1.5f;
+                thunderLight.intensity = 1f;
             }
             else {
                 thunderLight.intensity = 0f;
@@ -60,11 +65,13 @@ public class Thunder : MonoBehaviour {
 
     public void CallIntermittent()
     {
+        thunderSound.Play();
         StartCoroutine(ThunderLight_Intermittent());
     }
 
     public void CallFast()
     {
+        thunderSound.Play();
         StartCoroutine(ThunderLight_fast());
     }
 

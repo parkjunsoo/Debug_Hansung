@@ -8,9 +8,11 @@ public class FireplugAnim : MonoBehaviour {
     bool thunder;
     bool animPlayed;
     GameObject gameManager;
+    NipperExample nip;
 
 	// Use this for initialization
 	void Awake() {
+        nip = GameObject.Find("Nipper").GetComponent<NipperExample>();
         gameManager = GameObject.Find("GameManager");
         anim = GetComponent<Animator>();
         animPlayed = false;
@@ -36,6 +38,7 @@ public class FireplugAnim : MonoBehaviour {
             {
                 anim.SetTrigger("Open");                //Animator에서 작용
                 animPlayed = true;                      //애니메이션을 한 번만 플레이해야 하므로 animPlayed를 true로 설정.
+                nip.isOpen = true;
             }
         }
     }
