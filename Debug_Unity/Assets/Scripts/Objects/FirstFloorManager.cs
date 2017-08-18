@@ -13,6 +13,7 @@ public class FirstFloorManager : MonoBehaviour {
     void Start () {
         player = GameObject.Find("Player");
 
+        player.GetComponent<AudioSource>().volume = 0.5f;
         if(player.GetComponentInChildren<Light>().enabled)                  //손전등이 활성화 상태에서 Start시 Player의 시작 위치를 과사 앞으로
             player.transform.position =
                 officeOutPosition.transform.position;

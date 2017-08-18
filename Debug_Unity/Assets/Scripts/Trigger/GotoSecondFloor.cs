@@ -32,7 +32,10 @@ public class GotoSecondFloor : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (time - fadeTime >= 1.25f)
-            SceneManager.LoadScene("secondFloor");
+        if (player.GetComponent<PlayerControl>().GetLED())
+        {
+            if (time - fadeTime >= 1.25f)
+                SceneManager.LoadScene("secondFloor");
+        }
     }
 }

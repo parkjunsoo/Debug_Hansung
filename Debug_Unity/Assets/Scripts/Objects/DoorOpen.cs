@@ -16,7 +16,7 @@ public class DoorOpen : MonoBehaviour {
 
     void Open()
     {
-        this.transform.Rotate(0f, -0.7f, 0f);
+        this.transform.Rotate(0f, -0.6f, 0f);
     }
 
     // Use this for initialization
@@ -31,8 +31,10 @@ public class DoorOpen : MonoBehaviour {
         if (isOpening && this.transform.rotation.y <= 0.503f)
             Open();
         //-5E-17
+        
         if (this.transform.rotation.y >= -2.5E-17)
         //        if (this.transform.rotation.y >= 0f)
-            SceneManager.LoadScene("first");
+            SceneManager.LoadScene("office");
+            
     }
 }

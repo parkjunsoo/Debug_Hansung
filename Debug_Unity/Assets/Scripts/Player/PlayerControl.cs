@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
 
+    //=================================================================
+    //이동, 시점변경에 관한 변수. 건드리지 말것
     public float movementSpeed = 5f;
     public float mouseSensitivity = 2f;
     public float upDownRange = 90;
@@ -17,22 +19,30 @@ public class PlayerControl : MonoBehaviour {
     float verticalRotation = 0f;
     float verticalVelocity = 0f;
 
+    CharacterController cc;
+    //==================================================================
+
+    //레이어를 이용하여 아이템 획득 및 상호작용 구현을 위함. **VR기기 받으면 변경할 것
     int layerMask;
     LineRenderer line;
     Ray ray = new Ray();
     RaycastHit hit;
+    public Transform lineStart;
     float timer = 0f;
 
+    //아이템 등을 획득했는지를 판별하기 위해 선언한 변수 >> static으로 선언하여 씬을 이동해도 유지되도록
     static PlayerItems items;                                  //PlayerItems 스크립트를 저장할 변수(?)
     static Light LED_Light;
     static bool getLED;                              //Scene 이동시 손전등을 획득했는지를 판단해서 Light 컴포넌트를 활성화할지 여부를 결정하기 위함
     static bool isOn;
     public static int level;
+    static float ledIntensity = 1.0f;
 
-    public Transform lineStart;
-    CharacterController cc;
-
+    //Fade in/out을 위함
     FadeManager fadeManager;
+
+    //빗소리 AudioSource
+    static AudioSource rainySound;
     
     public int getLevel()
     {
@@ -45,6 +55,8 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void Awake () {
+        rainySound = GetComponent<AudioSource>();
+        rainySound.volume = 0.5f;
         items = GetComponent<PlayerItems>();            //player에 붙어있는, 아이템 획득 여부를 판단하는 변수들을 가진 PlayerItems 스크립트를 불러와 저장.
         cc = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -53,18 +65,19 @@ public class PlayerControl : MonoBehaviour {
         line = GetComponent<LineRenderer>();
         fadeManager = GameObject.Find("FadeManager").GetComponent<FadeManager>();
 
-        fadeManager.Fade(false, 2.0f);
+        fadeManager.Fade(false, 1.5f);      //씬에서 처음 로드될 때 FadeIn 실행
 
+        //getLED를 판별하여 손전등을 (비)활성화함
         if (!getLED)
         {
-            LED_Light.enabled = false;
+            LED_Light.enabled = false;      
         }
         else
         {
             LED_Light.enabled = true;
 
-            if (isOn)
-                LED_Light.intensity = 1f;
+            if (isOn)                   //씬을 이동하기 전에 손전등이 켜져 있었는지를 판단
+                LED_Light.intensity = ledIntensity;
             else
                 LED_Light.intensity = 0.0f;
         }
@@ -77,27 +90,27 @@ public class PlayerControl : MonoBehaviour {
         Rotate();
         LED_OnOff();
         Pickup();
-    }
-
-    
+    }    
 
     void LED_OnOff()        //E키 입력시 손전등을 on/off하는 함수 - 밝기(intensity) 조절을 통해 켜고 끄는 듯한 효과를 줌.
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (LED_Light.intensity == 1f)
+            if (LED_Light.intensity == ledIntensity)
             {
                 LED_Light.intensity = 0f;
                 isOn = false;
             }
             else
             {
-                LED_Light.intensity = 1f;
+                LED_Light.intensity = ledIntensity;
                 isOn = true;
             }
         }
     }
 
+    //===================================================================================
+    //이동과 시점. 변경하지 말것
     void Move()         //이동하는 함수. 매 프레임 호출
     {
         forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
@@ -120,8 +133,9 @@ public class PlayerControl : MonoBehaviour {
         verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
-    
+    //=============================================================================================
 
+    //상호작용, 아이템 획득 등을 위한 함수. **VR기기 사용시 변경할 것 같음
     void Pickup()               //Inspector의 Alignment를 "View"로 설정하여 선(?)을 확인할 수 있고, "Local"로 설정하여 선(?)을 지울 수 있음
     {
         line.SetPosition(0, lineStart.position);                      //lineStart의 position(Inspector에서 연결해줘야 함)

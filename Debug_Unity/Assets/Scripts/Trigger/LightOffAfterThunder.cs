@@ -10,7 +10,7 @@ public class LightOffAfterThunder : MonoBehaviour {
     Thunder[] thunderLight;
     public static bool isOff;
 
-    public Light[] offLamp;
+    //public Light[] offLamp;
 
     // Use this for initialization
     void Awake ()
@@ -26,13 +26,15 @@ public class LightOffAfterThunder : MonoBehaviour {
 
     private void Start()
     {
+        
         if (isOff)
         {
-            foreach(Light light in offLamp)
+            foreach(Light light in lamp)
             {
                 light.enabled = false;
             }
         }
+        
     }
 
     // Update is called once per frame
@@ -62,10 +64,12 @@ public class LightOffAfterThunder : MonoBehaviour {
                 light.enabled = false;
             }
 
+            /*
             foreach(Light light in offLamp)
             {
                 light.enabled = false;
             }
+            */
         }
     }
 

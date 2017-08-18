@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Objects\ThrowObject.cs" />
     <Compile Include="Assets\Scripts\Objects\Thunder.cs" />
     <Compile Include="Assets\Scripts\Objects\ThunderManager.cs" />
+    <Compile Include="Assets\Scripts\OfficeManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerItems.cs" />
     <Compile Include="Assets\Scripts\SecondFloorManager.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Assets\Scripts\Trigger\EnemyDisappearTrigger.cs" />
     <Compile Include="Assets\Scripts\Trigger\GotoSecondFloor.cs" />
     <Compile Include="Assets\Scripts\Trigger\LightOffAfterThunder.cs" />
+    <Compile Include="Assets\Scripts\Trigger\OfficeTrigger.cs" />
     <Compile Include="Assets\Scripts\Trigger\ThunderTrigger.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Temp\FadeManager.cs" />
