@@ -86,10 +86,14 @@
     <Compile Include="Assets\OutlineEffect\Outline.cs" />
     <Compile Include="Assets\OutlineEffect\OutlineEffect.cs" />
     <Compile Include="Assets\Scripts\MouseManager.cs" />
+    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\Objects\DoorOpen.cs" />
     <Compile Include="Assets\Scripts\Objects\FireplugAnim.cs" />
     <Compile Include="Assets\Scripts\Objects\FirstFloorManager.cs" />
+    <Compile Include="Assets\Scripts\Objects\Lamp.cs" />
     <Compile Include="Assets\Scripts\Objects\LEDExample.cs" />
+    <Compile Include="Assets\Scripts\Objects\Lock.cs" />
+    <Compile Include="Assets\Scripts\Objects\LockerOpen.cs" />
     <Compile Include="Assets\Scripts\Objects\NipperExample.cs" />
     <Compile Include="Assets\Scripts\Objects\ThrowObject.cs" />
     <Compile Include="Assets\Scripts\Objects\Thunder.cs" />
@@ -101,6 +105,7 @@
     <Compile Include="Assets\Scripts\Trigger\EnemyAppear.cs" />
     <Compile Include="Assets\Scripts\Trigger\EnemyAppearTrigger.cs" />
     <Compile Include="Assets\Scripts\Trigger\EnemyDisappearTrigger.cs" />
+    <Compile Include="Assets\Scripts\Trigger\GotoFirstFloor.cs" />
     <Compile Include="Assets\Scripts\Trigger\GotoSecondFloor.cs" />
     <Compile Include="Assets\Scripts\Trigger\LightOffAfterThunder.cs" />
     <Compile Include="Assets\Scripts\Trigger\OfficeTrigger.cs" />

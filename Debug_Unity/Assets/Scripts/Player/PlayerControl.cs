@@ -22,6 +22,12 @@ public class PlayerControl : MonoBehaviour {
     CharacterController cc;
     //==================================================================
 
+    //조명 비활성화를 판별하기 위한 부울 변수
+    static bool lightOff;
+
+    //시작하는 위치를 지정하기 위한 문자열
+    static string startPosition = "InitPosition";
+
     //레이어를 이용하여 아이템 획득 및 상호작용 구현을 위함. **VR기기 받으면 변경할 것
     int layerMask;
     LineRenderer line;
@@ -44,16 +50,6 @@ public class PlayerControl : MonoBehaviour {
     //빗소리 AudioSource
     static AudioSource rainySound;
     
-    public int getLevel()
-    {
-        return level;
-    }
-    
-    public bool GetLED()
-    {
-        return getLED;
-    }
-
     void Awake () {
         rainySound = GetComponent<AudioSource>();
         rainySound.volume = 0.5f;
@@ -66,6 +62,8 @@ public class PlayerControl : MonoBehaviour {
         fadeManager = GameObject.Find("FadeManager").GetComponent<FadeManager>();
 
         fadeManager.Fade(false, 1.5f);      //씬에서 처음 로드될 때 FadeIn 실행
+        if(GameObject.Find(startPosition) != null)
+            this.transform.Rotate(GameObject.Find(startPosition).transform.rotation.eulerAngles);           //씬에서 로드될 때 바라보는 방향
 
         //getLED를 판별하여 손전등을 (비)활성화함
         if (!getLED)
@@ -181,17 +179,10 @@ public class PlayerControl : MonoBehaviour {
 
                 else if (hit.collider.name.Contains("Lock_Close"))        //Lock일 경우... 니퍼를 획득한 상태인 경우 Mesh를 바꿈
                 {
-                    var ex = hit.collider.GetComponent<MeshFilter>();
-                    var af = GameObject.Find("Lock_Open");           //바꿔줄 mesh를 가진 오브젝트를 저장...
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         if (items.getNipper)
-                        {
-                            ex.mesh = af.GetComponent<MeshFilter>().mesh;       //mesh 변경
-                            hit.collider.GetComponent<Rigidbody>().useGravity = true;
-                            ex.GetComponent<cakeslice.Outline>().enabled = false;
-                            ex.GetComponent<BoxCollider>().enabled = false;
-                        }
+                            hit.collider.GetComponent<Lock>().Cut();                        
                     }
                 }
 
@@ -208,4 +199,34 @@ public class PlayerControl : MonoBehaviour {
 
         }
     }
+    public int getLevel()
+    {
+        return level;
+    }
+
+    public bool GetLED()
+    {
+        return getLED;
+    }
+
+    public bool IsOff()
+    {
+        return lightOff;
+    }
+
+    public void LightOff()
+    {
+        lightOff = true;
+    }
+
+    public string StartPosition()
+    {
+        return startPosition;
+    }
+
+    public void SetPosition(string pos)
+    {
+        startPosition = pos;
+    }
+
 }

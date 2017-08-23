@@ -17,25 +17,19 @@ public class GotoSecondFloor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         time += Time.deltaTime;
+        if(time - fadeTime >= 1.25f && fadeTime != 0)
+        {
+            SceneManager.LoadScene("secondFloor");
+        }
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        if (player.GetComponent<PlayerControl>().GetLED())
+        //if (player.GetComponent<PlayerControl>().GetLED())
         {
             fadeTime = time;
             GameObject.Find("FadeManager").GetComponent<FadeManager>().Fade(true, 1.25f);
-            if(fadeTime - time >= 1.25f)
-                SceneManager.LoadScene("secondFloor");
         }
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (player.GetComponent<PlayerControl>().GetLED())
-        {
-            if (time - fadeTime >= 1.25f)
-                SceneManager.LoadScene("secondFloor");
-        }
-    }
+    
 }

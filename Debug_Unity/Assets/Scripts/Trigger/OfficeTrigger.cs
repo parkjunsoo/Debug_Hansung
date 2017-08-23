@@ -16,21 +16,23 @@ public class OfficeTrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        fadeTime += Time.deltaTime;
+        if (fadeTime - triggerTime >= 1.0f && triggerTime != 0f)
+            SceneManager.LoadScene("firstFloor");
 	}
 
     private void OnTriggerEnter(Collider other)
     {
         triggerTime = Time.time;
         fadeTime = Time.time;
-        if(player.GetComponent<PlayerControl>().GetLED())
-            GameObject.Find("FadeManager").GetComponent<FadeManager>().Fade(true, 1.0f);
+        GameObject.Find("FadeManager").GetComponent<FadeManager>().Fade(true, 1.0f);
+        player.GetComponent<PlayerControl>().SetPosition("OfficeOutPosition");      //나가서 firstFloor 씬이 로드되었을 때의 시작 위치를 지정
     }
 
     private void OnTriggerStay(Collider other)
     {
-        fadeTime += Time.deltaTime;
-        if(fadeTime - triggerTime >= 1.0f && player.GetComponent<PlayerControl>().GetLED())
+        //fadeTime += Time.deltaTime;
+        if(fadeTime - triggerTime >= 1.0f && triggerTime != 0f)
             SceneManager.LoadScene("firstFloor");
     }
 }

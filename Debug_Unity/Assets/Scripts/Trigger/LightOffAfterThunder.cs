@@ -26,7 +26,7 @@ public class LightOffAfterThunder : MonoBehaviour {
 
     private void Start()
     {
-        
+     /*   
         if (isOff)
         {
             foreach(Light light in lamp)
@@ -34,7 +34,7 @@ public class LightOffAfterThunder : MonoBehaviour {
                 light.enabled = false;
             }
         }
-        
+     */   
     }
 
     // Update is called once per frame
@@ -44,6 +44,9 @@ public class LightOffAfterThunder : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+
+        GameObject.Find("Player").GetComponent<PlayerControl>().LightOff();
+
         if (!isOff)
         {
             isOff = true;
