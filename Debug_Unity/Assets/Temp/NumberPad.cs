@@ -14,7 +14,7 @@ public class NumberPad : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         pwText = GameObject.Find("PWText").GetComponent<TextMesh>();
-        password = "8";
+        password = "89";
         numBtn = GetComponentsInChildren<NumButton>();
         inputPW = null;
         numPads = GetComponentsInChildren<MeshRenderer>();

@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class ThunderTrigger : MonoBehaviour {
 
-    Light thunderLight;
+    Thunder[] thunderLight;
+    AudioSource rainySound;
 
 	// Use this for initialization
 	void Awake () {
-        thunderLight = GameObject.Find("Thunderlight").GetComponent<Light>();
+        rainySound = GameObject.Find("Player").GetComponent<AudioSource>();
+        thunderLight = GameObject.Find("ThunderGroup").GetComponentsInChildren<Thunder>();
 	}
     private void OnTriggerEnter(Collider other)
     {
-        thunderLight.GetComponent<Thunder>().CallIntermittent();
+        rainySound.volume = 0.7f;
+        foreach(Thunder thunder in thunderLight)
+        {
+            thunder.CallIntermittent();
+        }
+        //thunderLight.GetComponent<Thunder>().CallIntermittent();
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        rainySound.volume = 0.5f;
     }
     // Update is called once per frame
     void Update () {

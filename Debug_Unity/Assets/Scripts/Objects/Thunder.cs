@@ -6,6 +6,7 @@ public class Thunder : MonoBehaviour {
 
     Light thunderLight;
     AudioSource thunderSound;
+    float thunderIntensity = 1.0f;
 
 	// Use this for initialization
 	void Awake() {
@@ -18,24 +19,24 @@ public class Thunder : MonoBehaviour {
             StartCoroutine(ThunderLight_fast());
         }
         else
-        */
+        
         if(GameObject.Find("Player").GetComponent<PlayerControl>().getLevel() != 1)
         StartCoroutine(ThunderLight_slow());
-        
+        */
 //        StartCoroutine(ThunderLight_Intermittent());
 
     }
 	
     IEnumerator ThunderLight_fast()             //뻔쩎!
     {
-        thunderLight.intensity = 0.8f;
+        thunderLight.intensity = thunderIntensity;
         yield return new WaitForSeconds(0.5f);
         thunderLight.intensity = 0f;
     }
 
     IEnumerator ThunderLight_slow()             //버언~~~~쩍!!
     {
-        for(thunderLight.intensity = 0f; thunderLight.intensity < 0.8f;)
+        for(thunderLight.intensity = 0f; thunderLight.intensity < thunderIntensity;)
         {
             thunderLight.intensity += GameObject.Find("GameManager").GetComponent<ThunderManager>().intensity;
             //thunderLight.intensity += 0.04f;
@@ -53,7 +54,7 @@ public class Thunder : MonoBehaviour {
         {
             if (thunderLight.intensity == 0f)
             {
-                thunderLight.intensity = 1f;
+                thunderLight.intensity = thunderIntensity;
             }
             else {
                 thunderLight.intensity = 0f;
