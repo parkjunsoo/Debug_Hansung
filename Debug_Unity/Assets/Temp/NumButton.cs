@@ -5,14 +5,14 @@ using UnityEngine;
 public class NumButton : MonoBehaviour {
 
     public string input;
-   
+
 	// Use this for initialization
 	void Start () {
-		
+        GetComponent<cakeslice.Outline>().enabled = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update() {
+
+    }
 }

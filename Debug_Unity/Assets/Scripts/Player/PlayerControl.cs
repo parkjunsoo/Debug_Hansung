@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
-
+    
     //=================================================================
     //이동, 시점변경에 관한 변수. 건드리지 말것
     public float movementSpeed = 5f;
@@ -92,7 +92,7 @@ public class PlayerControl : MonoBehaviour {
 
     void LED_OnOff()        //E키 입력시 손전등을 on/off하는 함수 - 밝기(intensity) 조절을 통해 켜고 끄는 듯한 효과를 줌.
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 4"))
         {
             if (LED_Light.intensity == ledIntensity)
             {
@@ -124,11 +124,14 @@ public class PlayerControl : MonoBehaviour {
 
     void Rotate()       //시점변경 함수. 매 프레임 호출
     {
-        rotLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
+        rotLeftRight = Input.GetAxis("Xbox_X") * mouseSensitivity;
+        //rotLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
         transform.Rotate(0f, rotLeftRight, 0f);
 
-        verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+        verticalRotation += Input.GetAxis("Xbox_Y") * mouseSensitivity;
+        //verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
         verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
+//        Camera.main.transform.rotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
     //=============================================================================================
@@ -144,14 +147,14 @@ public class PlayerControl : MonoBehaviour {
         if(Physics.Raycast(ray, out hit, 3f, layerMask))                //획득할 아이템의 Layer를 "PickupItem"으로 바꿔야 작동함!!!!!!!!!!!!!!!!!!!
         {
             line.SetPosition(1, hit.point);
-
             if (hit.collider != null)
             {
-
+                if (hit.collider.GetComponent<cakeslice.Outline>() != null)
+                    hit.collider.GetComponent<cakeslice.Outline>().enabled = true;
                 if (hit.collider.name.Contains("Num"))
                 {
                     var ex = hit.collider.GetComponent<NumButton>();
-                    if (Input.GetKeyDown(KeyCode.F))
+                    if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown("joystick button 5"))
                     {
                         hit.collider.GetComponentInParent<NumberPad>().Password(ex.input);
                     }
@@ -160,14 +163,14 @@ public class PlayerControl : MonoBehaviour {
                 else if (hit.collider.name.Contains("Nipper"))               //Ray에 충돌한 collider가 "니퍼"를 포함한 이름을 가질 경우
                 {
                     var ex = hit.collider.GetComponent<NipperExample>();        //충돌한 collider의 NipperExample 스크립트를 가져옴
-                    if (Input.GetKeyDown(KeyCode.F)/* && ex.isOpen*/ )
+                    if (Input.GetKeyDown(KeyCode.F)/* && ex.isOpen*/  || Input.GetKeyDown("joystick button 5"))
                         ex.Call();
                 }
 
                 else if (hit.collider.name.Contains("LED"))          //LED일 경우
                 {
                     var ex = hit.collider.GetComponent<LEDExample>();
-                    if (Input.GetKeyDown(KeyCode.F))
+                    if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown("joystick button 5"))
                     {
                         ex.Call();
                         getLED = true;
@@ -179,7 +182,7 @@ public class PlayerControl : MonoBehaviour {
 
                 else if (hit.collider.name.Contains("Lock_Close"))        //Lock일 경우... 니퍼를 획득한 상태인 경우 Mesh를 바꿈
                 {
-                    if (Input.GetKeyDown(KeyCode.F))
+                    if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown("joystick button 5"))
                     {
                         if (items.getNipper)
                             hit.collider.GetComponent<Lock>().Cut();                        
@@ -188,15 +191,13 @@ public class PlayerControl : MonoBehaviour {
 
                 else if (hit.collider.name.Contains("doorLock"))
                 {
-                    var ex = hit.collider.GetComponentInChildren<NumberPad>();
-                    if (Input.GetKeyDown(KeyCode.F))
+                    if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown("joystick button 5"))
                     {
-                        ex.EnableMesh();
+                        hit.collider.GetComponentInChildren<NumberPad>().EnableMesh();
                     }
                 }
 
             }
-
         }
     }
     public int getLevel()
